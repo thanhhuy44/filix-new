@@ -47,7 +47,17 @@ export default function Hero({ movies }: Props) {
                   <div className="p-2 md:p-3 xl:p-4 bg-primary-2 grid grid-cols-2 gap-x-3 items-center">
                     <div className="flex flex-col gap-y-2">
                       <Link
-                        href={'#'}
+                        href={
+                          (movie.media_type as string) === 'tv'
+                            ? '/tv/' +
+                              movie?.name?.toLowerCase().replaceAll(' ', '-') +
+                              '-' +
+                              movie.id
+                            : '/movie/' +
+                              movie?.title?.toLowerCase().replaceAll(' ', '-') +
+                              '-' +
+                              movie.id
+                        }
                         className="line-clamp-1 font-bold text-base md:text-lg xl:text-xl text-white hover:text-secondary-1 duration-150">
                         {movie.title || movie.name}
                       </Link>
@@ -67,7 +77,17 @@ export default function Hero({ movies }: Props) {
                     </div>
                     <Link
                       className="w-full border-gray-500 border text-center select-none p-2 rounded-full text-white hover:bg-secondary-1 duration-300 hover:border-none hover:text-grey-dark font-semibold"
-                      href={'#'}>
+                      href={
+                        (movie.media_type as string) === 'tv'
+                          ? '/tv/' +
+                            movie?.name?.toLowerCase().replaceAll(' ', '-') +
+                            '-' +
+                            movie.id
+                          : '/movie/' +
+                            movie?.title?.toLowerCase().replaceAll(' ', '-') +
+                            '-' +
+                            movie.id
+                      }>
                       Watch Now
                     </Link>
                   </div>

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#info-table tr td {
+  @apply py-1 align-top;
+}
+
+#info-table tr td:last-child {
+  @apply pl-2;
+}
