@@ -14,6 +14,8 @@ const getData = async (id: string) => {
   return { infoMovie, similars };
 };
 
+export const runtime = 'edge';
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const id = params.slug.split('-')[params.slug.split('-').length - 1];
   const { infoMovie } = await getData(id);
