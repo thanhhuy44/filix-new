@@ -59,4 +59,25 @@ export interface IDetail {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  first_air_date: string;
+  seasons: Array<{
+    id: number;
+    name: string;
+  }>;
+}
+
+export interface IComment {
+  author: string;
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+}
+
+export interface IEpisode {
+  id: number;
+  episode_number: number;
+  name: string;
+  season_number: number;
 }
