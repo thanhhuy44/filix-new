@@ -2,13 +2,19 @@ import PlayerMovie from '@/components/PlayerMovie';
 import { IMAGE_ORIGIN_PATH } from '@/constants';
 import { IDetail, IMovie } from '@/interfaces';
 import request from '@/utils/axiosClient';
+import createCustomFetch from '@/utils/fetchClient';
 import { Star } from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
 import React from 'react';
 
+export const runtime = 'edge';
+
 const getData = async (id: string) => {
-  const infoMovie: IDetail = await request.get('/movie/' + id);
-  const similars: Array<IMovie> = await request.get(
+  const customFetch = createCustomFetch({
+    method: 'GET',
+  });
+  const infoMovie: IDetail = await customFetch('/movie/' + id);
+  const similars: Array<IMovie> = await customFetch(
     '/movie/' + id + '/similar'
   );
   return { infoMovie, similars };
