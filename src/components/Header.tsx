@@ -1,8 +1,12 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { List, MagnifyingGlass } from '@phosphor-icons/react/dist/ssr';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+  const router = useRouter();
+  const [keyword, setKeyword] = useState<string>('');
   return (
     <header className="bg-primary-2 text-white">
       <div className="container flex items-center justify-between gap-x-4 py-2 md:py-3 lg:py-4">
@@ -16,8 +20,17 @@ export default function Header() {
               type="text"
               placeholder="Search"
               className="bg-transparent flex-1 outline-none"
+              onChange={(e) => setKeyword(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  router.push('/search?keyword=' + keyword);
+                }
+              }}
             />
-            <MagnifyingGlass className="cursor-pointer" />
+            <MagnifyingGlass
+              onClick={() => router.push('/search?keyword=' + keyword)}
+              className="cursor-pointer"
+            />
           </div>
         </div>
         <div className="cursor-pointer">

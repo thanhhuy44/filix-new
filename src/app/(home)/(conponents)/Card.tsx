@@ -14,8 +14,8 @@ export default function Card({ movie }: Props) {
       <div className="overflow-hidden flex-1 relative">
         <Image
           fill
-          src={IMAGE_ORIGIN_PATH + movie.poster_path}
-          alt={'Filix - ' + movie.title}
+          src={IMAGE_ORIGIN_PATH + (movie.poster_path || movie.backdrop_path)}
+          alt={'Filix - ' + (movie.title || movie.name)}
           className="!static !w-full !h-full object-center object-cover group-hover:scale-110 duration-300"
         />
         <div className="absolute left-0 right-0 bottom-0 top-0 z-10 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-200">

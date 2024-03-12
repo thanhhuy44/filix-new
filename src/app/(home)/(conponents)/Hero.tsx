@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 
 interface Props {
   movies: Array<IMovie>;
@@ -22,11 +21,9 @@ export default function Hero({ movies }: Props) {
             autoplay={{
               delay: 5000,
             }}
+            slidesPerView={1}
+            spaceBetween={12}
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-                spaceBetween: 12,
-              },
               768: {
                 slidesPerView: 2,
                 spaceBetween: 16,
@@ -35,15 +32,17 @@ export default function Hero({ movies }: Props) {
                 slidesPerView: 3,
                 spaceBetween: 24,
               },
-            }}>
+            }}
+            className="w-full max-w-full">
             {movies.map((movie, index) => (
               <SwiperSlide className="!h-auto" key={index}>
                 <div className="rounded-md overflow-hidden border border-gray-600 cursor-grab h-full flex flex-col">
                   <Image
-                    fill
+                    width={500}
+                    height={500}
                     src={IMAGE_ORIGIN_PATH + movie.backdrop_path}
                     alt={'Filix - ' + movie.title}
-                    className="!static !w-full !h-full flex-1 object-cover object-center"
+                    className="max-w-none flex-1 object-cover object-center aspect-video"
                   />
                   <div className="p-2 md:p-3 xl:p-4 bg-primary-2 grid grid-cols-2 gap-x-3 items-center">
                     <div className="flex flex-col gap-y-2">
