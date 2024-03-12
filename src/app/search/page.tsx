@@ -2,17 +2,19 @@ import { IMovie } from '@/interfaces';
 import request from '@/utils/axiosClient';
 import React from 'react';
 import Card from '../(home)/(conponents)/Card';
+import createCustomFetch from '@/utils/fetchClient';
+
+export const runtime = 'edge';
 
 const getData = async (keyword: string) => {
+  const customFetch = createCustomFetch({
+    method: 'GET',
+  });
   const movies: {
     results: Array<IMovie>;
     page: number;
     total_pages: number;
-  } = await request.get('/search/movie', {
-    params: {
-      query: keyword,
-    },
-  });
+  } = await customFetch(`/search/movie?query=${keyword}`);
 
   const tv: {
     results: Array<IMovie>;
